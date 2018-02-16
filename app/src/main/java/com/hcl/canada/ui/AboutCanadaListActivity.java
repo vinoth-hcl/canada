@@ -5,21 +5,18 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 
 import com.hcl.canada.R;
 import com.hcl.canada.ui.adapters.AboutCanadaRecyclerAdapter;
-import com.hcl.canada.ui.api.APIClient;
-import com.hcl.canada.ui.api.APIService;
 import com.hcl.canada.ui.contracts.AboutCanadaContract;
-import com.hcl.canada.ui.models.AboutResponse;
+import com.hcl.canada.ui.models.AboutItem;
 import com.hcl.canada.ui.presenters.AboutCanadaPresenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AboutCanadaListActivity extends AppCompatActivity implements AboutCanadaContract.View {
 
@@ -29,10 +26,11 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
     @BindView(R.id.about_recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.about_list_toolbar)
+    Toolbar toolbar;
+
     private AboutCanadaRecyclerAdapter aboutCanadaRecyclerAdapter;
     private AboutCanadaContract.Presenter presenter;
-
-    private static final String TAG = AboutCanadaListActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,7 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         setContentView(R.layout.activity_about_canada);
         ButterKnife.bind(this);
 
-        presenter = new AboutCanadaPresenter();
+        presenter = new AboutCanadaPresenter(this);
 
         aboutCanadaRecyclerAdapter = new AboutCanadaRecyclerAdapter();
         recyclerView.setAdapter(aboutCanadaRecyclerAdapter);
@@ -51,11 +49,11 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO: Will be added once network call implementation done.
+                getContents();
             }
         });
 
-        getContentAndUpdateView();
+        getContents();
     }
 
     @Override
@@ -70,19 +68,23 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         presenter.onViewInactive();
     }
 
-    private void getContentAndUpdateView() {
-        APIService apiService = APIClient.getClient().create(APIService.class);
-        Call<AboutResponse> apiCall = apiService.getAboutContent();
-        apiCall.enqueue(new Callback<AboutResponse>() {
-            @Override
-            public void onResponse(Call<AboutResponse> call, Response<AboutResponse> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AboutResponse> call, Throwable t) {
-                Log.e(TAG, t.toString());
-            }
-        });
+    @Override
+    public void updateToolbarTitle(String title) {
+        toolbar.setTitle(title);
     }
+
+    @Override
+    public void updateListView(List<AboutItem> items) {
+        aboutCanadaRecyclerAdapter.setContent(items);
+    }
+
+    @Override
+    public void setProgressBar(boolean isVisible) {
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void getContents() {
+        presenter.getContent();
+    }
+
 }

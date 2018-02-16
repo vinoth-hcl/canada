@@ -10,14 +10,14 @@
     <!-- Splash screen title theme -->
     <style name="SplashTitleTheme" parent="AppTheme">
         <item name="android:textSize">@dimen/splash_title_text_size</item>
-        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Splash screen title theme -->
     <style name="ActionBarTitleTheme" parent="AppTheme">
         <item name="android:textSize">@dimen/action_bar_title_text_size</item>
-        <item name="android:textColor">@color/color_white</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -26,6 +26,13 @@
         <item name="android:textSize">@dimen/list_item_title_text_size</item>
         <item name="android:textColor">@color/color_list_item_title</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- List item description theme -->
+    <style name="ListDescriptionTheme" parent="AppTheme">
+        <item name="android:textSize">@dimen/list_item_description_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
 </resources>
