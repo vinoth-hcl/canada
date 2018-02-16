@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="splash_title_text_size">56sp</dimen>
+    <dimen name="action_bar_title_text_size">24sp</dimen>
+    <dimen name="list_item_title_text_size">16sp</dimen>
+    <dimen name="list_item_top_margin">10dp</dimen>
 </resources>
