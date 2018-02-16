@@ -20,7 +20,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                startActivity(new Intent(SplashActivity.this, AboutCanadaListActivity.class));
-               finish();
             }
         }, SPLASH_TIME_OUT);
     }
