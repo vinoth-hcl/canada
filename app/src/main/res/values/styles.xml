@@ -14,10 +14,17 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- Splash screen title theme -->
+    <!-- Action bar title theme -->
     <style name="ActionBarTitleTheme" parent="AppTheme">
         <item name="android:textSize">@dimen/action_bar_title_text_size</item>
         <item name="android:textColor">@color/color_white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- List item title theme -->
+    <style name="ListTitleTheme" parent="AppTheme">
+        <item name="android:textSize">@dimen/list_item_title_text_size</item>
+        <item name="android:textColor">@color/color_list_item_title</item>
         <item name="android:textStyle">bold</item>
     </style>
 
