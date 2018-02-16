@@ -5,11 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.hcl.canada.R;
 
+import butterknife.ButterKnife;
+
 public class AboutCanadaListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_canada);
+        ButterKnife.bind(this);
+
+
     }
 }
