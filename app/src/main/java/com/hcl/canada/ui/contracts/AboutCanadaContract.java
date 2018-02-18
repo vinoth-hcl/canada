@@ -17,6 +17,10 @@ public class AboutCanadaContract {
         void updateListView(List<AboutItem> items);
 
         void setProgressBar(boolean isVisible);
+
+        void showNoContentInfo();
+
+        void hideNoContentInfo();
     }
 
 }

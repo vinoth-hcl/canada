@@ -31,10 +31,15 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
                 view.updateListView(response.body().getAboutItems());
 
                 view.setProgressBar(false);
+
+                view.hideNoContentInfo();
             }
 
             @Override
             public void onFailure(Call<AboutResponse> call, Throwable t) {
+                view.showNoContentInfo();
+
+                view.setProgressBar(false);
                 Log.e(TAG, t.toString());
             }
         });

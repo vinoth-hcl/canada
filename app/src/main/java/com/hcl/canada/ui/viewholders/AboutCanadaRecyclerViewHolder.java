@@ -47,6 +47,7 @@ public class AboutCanadaRecyclerViewHolder extends RecyclerView.ViewHolder {
         titleView.setText(aboutItem.getTitle());
         descriptionView.setText(aboutItem.getDescription());
 
+        /* Default image placeholder if error occurs */
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.placeholder(R.drawable.ic_cityscape);
         requestOptions.error(R.drawable.ic_cityscape);

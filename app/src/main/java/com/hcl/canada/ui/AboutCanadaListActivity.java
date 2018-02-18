@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.hcl.canada.R;
 import com.hcl.canada.ui.adapters.AboutCanadaRecyclerAdapter;
@@ -28,6 +30,9 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
 
     @BindView(R.id.about_list_toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.no_content_available)
+    TextView noContentView;
 
     private AboutCanadaRecyclerAdapter aboutCanadaRecyclerAdapter;
     private AboutCanadaContract.Presenter presenter;
@@ -81,6 +86,18 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
     @Override
     public void setProgressBar(boolean isVisible) {
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showNoContentInfo() {
+        noContentView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideNoContentInfo() {
+        recyclerView.setVisibility(View.VISIBLE);
+        noContentView.setVisibility(View.GONE);
     }
 
     private void getContents() {

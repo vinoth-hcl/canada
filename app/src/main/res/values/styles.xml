@@ -35,4 +35,11 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <!-- No content info theme -->
+    <style name="NoContentInfoTheme" parent="AppTheme">
+        <item name="android:textSize">@dimen/no_content_info_text_size</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
 </resources>
