@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hcl.canada.R;
@@ -34,6 +35,9 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
     @BindView(R.id.no_content_available)
     TextView noContentView;
 
+    @BindView(R.id.about_progress_bar)
+    ProgressBar progressBar;
+
     private AboutCanadaRecyclerAdapter aboutCanadaRecyclerAdapter;
     private AboutCanadaContract.Presenter presenter;
 
@@ -54,11 +58,11 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getContents();
+                getContents(true);
             }
         });
 
-        getContents();
+        getContents(false);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
     }
 
     @Override
-    public void setProgressBar(boolean isVisible) {
+    public void setSwipeTopProgressBar(boolean isVisible) {
         swipeRefreshLayout.setRefreshing(false);
     }
 
@@ -100,8 +104,18 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         noContentView.setVisibility(View.GONE);
     }
 
-    private void getContents() {
-        presenter.getContent();
+    @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void getContents(boolean isRefresh) {
+        presenter.getContent(isRefresh);
     }
 
 }

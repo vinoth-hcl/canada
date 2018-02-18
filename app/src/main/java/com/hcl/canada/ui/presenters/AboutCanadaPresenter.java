@@ -21,7 +21,10 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
     }
 
     @Override
-    public void getContent() {
+    public void getContent(boolean isRefresh) {
+        if (!isRefresh)
+            view.showProgressBar();
+
         APIService apiService = APIClient.getClient().create(APIService.class);
         Call<AboutResponse> apiCall = apiService.getAboutContent();
         apiCall.enqueue(new Callback<AboutResponse>() {
@@ -30,16 +33,19 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
                 view.updateToolbarTitle(response.body().getTitle());
                 view.updateListView(response.body().getAboutItems());
 
-                view.setProgressBar(false);
+                view.setSwipeTopProgressBar(false);
+
+                view.hideProgressBar();
 
                 view.hideNoContentInfo();
             }
 
             @Override
             public void onFailure(Call<AboutResponse> call, Throwable t) {
+                view.hideProgressBar();
                 view.showNoContentInfo();
 
-                view.setProgressBar(false);
+                view.setSwipeTopProgressBar(false);
                 Log.e(TAG, t.toString());
             }
         });

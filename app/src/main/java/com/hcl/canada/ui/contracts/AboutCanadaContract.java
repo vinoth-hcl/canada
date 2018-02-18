@@ -8,7 +8,7 @@ import java.util.List;
 public class AboutCanadaContract {
 
     public interface Presenter extends ViewStatePresenter<View> {
-        void getContent();
+        void getContent(boolean isRefresh);
     }
 
     public interface View {
@@ -16,11 +16,15 @@ public class AboutCanadaContract {
 
         void updateListView(List<AboutItem> items);
 
-        void setProgressBar(boolean isVisible);
+        void setSwipeTopProgressBar(boolean isVisible);
 
         void showNoContentInfo();
 
         void hideNoContentInfo();
+
+        void showProgressBar();
+
+        void hideProgressBar();
     }
 
 }
