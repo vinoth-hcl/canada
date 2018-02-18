@@ -36,11 +36,11 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/about_item_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/list_item_right_margin"
+            android:layout_width="@dimen/about_image_width"
+            android:layout_height="@dimen/about_image_height"
             android:layout_marginRight="@dimen/list_item_right_margin"
-            android:src="@drawable/ic_launcher_background"
+            android:layout_marginTop="@dimen/list_item_right_margin"
+            android:src="@drawable/ic_cityscape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/about_item_navigation_arrow"
             app:layout_constraintTop_toBottomOf="@+id/about_item_title" />
@@ -52,7 +52,7 @@
             android:src="@drawable/ic_right_arrow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/about_item_title" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

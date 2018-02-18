@@ -7,4 +7,6 @@
     <dimen name="list_item_top_margin">10dp</dimen>
     <dimen name="list_item_right_margin">10dp</dimen>
     <dimen name="list_item_divider_height">1dp</dimen>
+    <dimen name="about_image_width">150dp</dimen>
+    <dimen name="about_image_height">85dp</dimen>
 </resources>

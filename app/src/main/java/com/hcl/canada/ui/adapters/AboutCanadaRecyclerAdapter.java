@@ -1,5 +1,6 @@
 package com.hcl.canada.ui.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -12,10 +13,15 @@ import java.util.List;
 public class AboutCanadaRecyclerAdapter extends RecyclerView.Adapter<AboutCanadaRecyclerViewHolder> {
 
     private List<AboutItem> aboutItems = new ArrayList<>();
+    private Context context;
+
+    public AboutCanadaRecyclerAdapter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public AboutCanadaRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return AboutCanadaRecyclerViewHolder.newInstance(parent);
+        return AboutCanadaRecyclerViewHolder.newInstance(parent, context);
     }
 
     @Override

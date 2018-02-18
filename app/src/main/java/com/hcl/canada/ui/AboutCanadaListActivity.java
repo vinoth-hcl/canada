@@ -40,7 +40,7 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
 
         presenter = new AboutCanadaPresenter(this);
 
-        aboutCanadaRecyclerAdapter = new AboutCanadaRecyclerAdapter();
+        aboutCanadaRecyclerAdapter = new AboutCanadaRecyclerAdapter(this);
         recyclerView.setAdapter(aboutCanadaRecyclerAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
