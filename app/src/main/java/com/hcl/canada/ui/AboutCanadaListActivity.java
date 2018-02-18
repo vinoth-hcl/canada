@@ -5,21 +5,21 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.hcl.canada.R;
 import com.hcl.canada.ui.adapters.AboutCanadaRecyclerAdapter;
-import com.hcl.canada.ui.api.APIClient;
-import com.hcl.canada.ui.api.APIService;
 import com.hcl.canada.ui.contracts.AboutCanadaContract;
-import com.hcl.canada.ui.models.AboutResponse;
+import com.hcl.canada.ui.models.AboutItem;
 import com.hcl.canada.ui.presenters.AboutCanadaPresenter;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AboutCanadaListActivity extends AppCompatActivity implements AboutCanadaContract.View {
 
@@ -29,10 +29,17 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
     @BindView(R.id.about_recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.about_list_toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.no_content_available)
+    TextView noContentView;
+
+    @BindView(R.id.about_progress_bar)
+    ProgressBar progressBar;
+
     private AboutCanadaRecyclerAdapter aboutCanadaRecyclerAdapter;
     private AboutCanadaContract.Presenter presenter;
-
-    private static final String TAG = AboutCanadaListActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +47,9 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         setContentView(R.layout.activity_about_canada);
         ButterKnife.bind(this);
 
-        presenter = new AboutCanadaPresenter();
+        presenter = new AboutCanadaPresenter(this);
 
-        aboutCanadaRecyclerAdapter = new AboutCanadaRecyclerAdapter();
+        aboutCanadaRecyclerAdapter = new AboutCanadaRecyclerAdapter(this);
         recyclerView.setAdapter(aboutCanadaRecyclerAdapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -51,11 +58,11 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //TODO: Will be added once network call implementation done.
+                getContents(true);
             }
         });
 
-        getContentAndUpdateView();
+        getContents(false);
     }
 
     @Override
@@ -70,19 +77,45 @@ public class AboutCanadaListActivity extends AppCompatActivity implements AboutC
         presenter.onViewInactive();
     }
 
-    private void getContentAndUpdateView() {
-        APIService apiService = APIClient.getClient().create(APIService.class);
-        Call<AboutResponse> apiCall = apiService.getAboutContent();
-        apiCall.enqueue(new Callback<AboutResponse>() {
-            @Override
-            public void onResponse(Call<AboutResponse> call, Response<AboutResponse> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<AboutResponse> call, Throwable t) {
-                Log.e(TAG, t.toString());
-            }
-        });
+    @Override
+    public void updateToolbarTitle(String title) {
+        toolbar.setTitle(title);
     }
+
+    @Override
+    public void updateListView(List<AboutItem> items) {
+        aboutCanadaRecyclerAdapter.setContent(items);
+    }
+
+    @Override
+    public void setSwipeTopProgressBar(boolean isVisible) {
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showNoContentInfo() {
+        noContentView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideNoContentInfo() {
+        recyclerView.setVisibility(View.VISIBLE);
+        noContentView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    private void getContents(boolean isRefresh) {
+        presenter.getContent(isRefresh);
+    }
+
 }

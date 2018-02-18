@@ -25,7 +25,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_app_bar_layout">
@@ -33,8 +34,31 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/about_recycler_view"
             android:layout_width="0dp"
-            android:layout_height="0dp" />
+            android:layout_height="wrap_content" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/no_content_available"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/no_content_available"
+        android:textAppearance="@style/NoContentInfoTheme"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_app_bar_layout" />
+
+    <ProgressBar
+        android:id="@+id/about_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_app_bar_layout" />
 
 </android.support.constraint.ConstraintLayout>
