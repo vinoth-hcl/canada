@@ -1,9 +1,9 @@
 package com.hcl.canada.ui;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.hcl.canada.R;
 
@@ -19,8 +19,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-               startActivity(new Intent(SplashActivity.this, AboutCanadaListActivity.class));
-               finish();
+                startActivity(new Intent(SplashActivity.this, AboutCanadaListActivity.class));
+                finish();
             }
         }, SPLASH_TIME_OUT);
     }

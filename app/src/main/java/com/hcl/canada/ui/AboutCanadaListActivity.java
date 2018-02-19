@@ -11,10 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hcl.canada.R;
-import com.hcl.canada.ui.adapters.AboutCanadaRecyclerAdapter;
-import com.hcl.canada.ui.contracts.AboutCanadaContract;
-import com.hcl.canada.ui.models.AboutItem;
-import com.hcl.canada.ui.presenters.AboutCanadaPresenter;
+import com.hcl.canada.adapters.AboutCanadaRecyclerAdapter;
+import com.hcl.canada.contracts.AboutCanadaContract;
+import com.hcl.canada.models.AboutItem;
+import com.hcl.canada.presenters.AboutCanadaPresenter;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.hcl.canada.ui.adapters;
+package com.hcl.canada.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.hcl.canada.ui.models.AboutItem;
-import com.hcl.canada.ui.viewholders.AboutCanadaRecyclerViewHolder;
+import com.hcl.canada.models.AboutItem;
+import com.hcl.canada.viewholders.AboutCanadaRecyclerViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

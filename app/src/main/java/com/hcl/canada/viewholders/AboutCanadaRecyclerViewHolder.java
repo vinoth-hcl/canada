@@ -1,4 +1,4 @@
-package com.hcl.canada.ui.viewholders;
+package com.hcl.canada.viewholders;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hcl.canada.R;
-import com.hcl.canada.ui.models.AboutItem;
+import com.hcl.canada.models.AboutItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

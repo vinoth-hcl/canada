@@ -1,6 +1,6 @@
-package com.hcl.canada.ui.api;
+package com.hcl.canada.api;
 
-import com.hcl.canada.ui.models.AboutResponse;
+import com.hcl.canada.models.AboutResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
