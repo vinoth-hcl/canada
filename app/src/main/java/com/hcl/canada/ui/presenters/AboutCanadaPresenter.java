@@ -15,6 +15,7 @@ import retrofit2.Response;
 public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View> implements AboutCanadaContract.Presenter {
 
     private static final String TAG = AboutCanadaListActivity.class.getName();
+    private AboutCanadaContract.View view;
 
     public AboutCanadaPresenter(AboutCanadaContract.View view) {
         this.view = view;
@@ -30,24 +31,36 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
         apiCall.enqueue(new Callback<AboutResponse>() {
             @Override
             public void onResponse(Call<AboutResponse> call, Response<AboutResponse> response) {
-                view.updateToolbarTitle(response.body().getTitle());
-                view.updateListView(response.body().getAboutItems());
-
-                view.setSwipeTopProgressBar(false);
-
-                view.hideProgressBar();
-
-                view.hideNoContentInfo();
+                if (response.isSuccessful() && response.body() != null && (response.body().getAboutItems().size() > 0)) {
+                    updateViewOnSuccess(response);
+                } else {
+                    updateViewOnFailure();
+                }
             }
 
             @Override
             public void onFailure(Call<AboutResponse> call, Throwable t) {
-                view.hideProgressBar();
-                view.showNoContentInfo();
-
-                view.setSwipeTopProgressBar(false);
+                updateViewOnFailure();
                 Log.e(TAG, t.toString());
             }
         });
+    }
+
+    private void updateViewOnFailure() {
+        view.hideProgressBar();
+        view.showNoContentInfo();
+
+        view.setSwipeTopProgressBar(false);
+    }
+
+    private void updateViewOnSuccess(Response<AboutResponse> response) {
+        view.updateToolbarTitle(response.body().getTitle());
+        view.updateListView(response.body().getAboutItems());
+
+        view.setSwipeTopProgressBar(false);
+
+        view.hideProgressBar();
+
+        view.hideNoContentInfo();
     }
 }
