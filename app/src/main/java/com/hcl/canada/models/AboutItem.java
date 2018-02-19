@@ -1,4 +1,4 @@
-package com.hcl.canada.ui.models;
+package com.hcl.canada.models;
 
 import com.google.gson.annotations.SerializedName;
 

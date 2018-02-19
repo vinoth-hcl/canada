@@ -1,4 +1,4 @@
-package com.hcl.canada.ui.presenters;
+package com.hcl.canada.presenters;
 
 import android.support.annotation.NonNull;
 

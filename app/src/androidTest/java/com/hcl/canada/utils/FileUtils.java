@@ -1,4 +1,4 @@
-package utils;
+package com.hcl.canada.utils;
 
 import android.support.test.espresso.core.internal.deps.guava.io.ByteStreams;
 

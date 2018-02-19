@@ -1,8 +1,7 @@
-package robots;
+package com.hcl.canada.robots;
 
 import com.hcl.canada.R;
-
-import utils.RoboUtils;
+import com.hcl.canada.utils.RoboUtils;
 
 public class AboutListRobot {
 

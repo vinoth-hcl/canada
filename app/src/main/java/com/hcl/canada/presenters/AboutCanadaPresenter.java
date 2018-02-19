@@ -1,12 +1,12 @@
-package com.hcl.canada.ui.presenters;
+package com.hcl.canada.presenters;
 
 import android.util.Log;
 
+import com.hcl.canada.api.APIClient;
+import com.hcl.canada.api.APIService;
+import com.hcl.canada.contracts.AboutCanadaContract;
+import com.hcl.canada.models.AboutResponse;
 import com.hcl.canada.ui.AboutCanadaListActivity;
-import com.hcl.canada.ui.api.APIClient;
-import com.hcl.canada.ui.api.APIService;
-import com.hcl.canada.ui.contracts.AboutCanadaContract;
-import com.hcl.canada.ui.models.AboutResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +49,6 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
     private void updateViewOnFailure() {
         view.hideProgressBar();
         view.showNoContentInfo();
-
         view.setSwipeTopProgressBar(false);
     }
 
@@ -58,9 +57,7 @@ public class AboutCanadaPresenter extends BasePresenter<AboutCanadaContract.View
         view.updateListView(response.body().getAboutItems());
 
         view.setSwipeTopProgressBar(false);
-
         view.hideProgressBar();
-
         view.hideNoContentInfo();
     }
 }

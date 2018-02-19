@@ -1,10 +1,9 @@
-package com.hcl.canada.ui.presenters;
+package com.hcl.canada.presenters;
 
 import android.support.annotation.NonNull;
 
 /**
- * Base class to be extended by any MVP Presenter in the application. It contains common attributes and
- * methods to be shared across Presenters.
+ * Base class to be extended by any MVP Presenter in the application.
  *
  * @param <VIEW_TYPE> a generic type to indicate a type of View
  */

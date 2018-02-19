@@ -1,7 +1,7 @@
-package com.hcl.canada.ui.contracts;
+package com.hcl.canada.contracts;
 
-import com.hcl.canada.ui.models.AboutItem;
-import com.hcl.canada.ui.presenters.ViewStatePresenter;
+import com.hcl.canada.models.AboutItem;
+import com.hcl.canada.presenters.ViewStatePresenter;
 
 import java.util.List;
 
@@ -26,5 +26,4 @@ public class AboutCanadaContract {
 
         void hideProgressBar();
     }
-
 }

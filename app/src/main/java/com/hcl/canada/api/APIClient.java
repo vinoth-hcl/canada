@@ -1,4 +1,4 @@
-package com.hcl.canada.ui.api;
+package com.hcl.canada.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -7,6 +7,7 @@ public class APIClient {
 
     /* Base URL for the APIs */
     public static String BASE_URL = "https://dl.dropboxusercontent.com/";
+
     private static Retrofit retrofit;
 
     public static Retrofit getClient() {
